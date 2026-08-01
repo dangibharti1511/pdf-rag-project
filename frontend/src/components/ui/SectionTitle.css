@@ -1,0 +1,23 @@
+.section-title{
+
+    margin-bottom:26px;
+
+}
+
+.section-title h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+    color:var(--text-primary);
+
+}
+
+.section-title p{
+
+    color:var(--text-secondary);
+
+    font-size:15px;
+
+}

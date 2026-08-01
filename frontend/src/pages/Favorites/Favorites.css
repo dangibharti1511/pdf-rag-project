@@ -1,0 +1,36 @@
+.favorites-page {
+  padding: 2rem;
+}
+
+.favorites-header {
+  margin-bottom: 2rem;
+}
+
+.favorites-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.favorites-header p {
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.favorites-empty {
+  background: var(--background-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.favorites-empty h2 {
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.favorites-empty p {
+  color: var(--text-secondary);
+}

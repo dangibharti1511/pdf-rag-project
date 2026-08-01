@@ -1,0 +1,24 @@
+.workspace-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  min-height: 100%;
+  background: var(--background-primary);
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .workspace-page {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .workspace-page {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}

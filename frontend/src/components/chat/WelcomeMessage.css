@@ -1,0 +1,57 @@
+.welcome-message{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    gap:22px;
+
+    padding:40px 20px;
+
+}
+
+.welcome-icon{
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:50%;
+
+    background:#eef4ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:var(--primary);
+
+}
+
+.welcome-message h2{
+
+    font-size:32px;
+
+    color:var(--text-primary);
+
+}
+
+.welcome-message p{
+
+    max-width:620px;
+
+    line-height:1.8;
+
+    color:var(--text-secondary);
+
+}
