@@ -1,64 +1,57 @@
 import "./DocumentGrid.css";
 
 import DocumentCard from "../DocumentCard/DocumentCard";
-
 import EmptyState from "../../empty/EmptyState/EmptyState";
 
 function DocumentGrid({
 
-  documents,
+    documents = [],
 
-  viewMode,
+    viewMode,
 
-  onToggleFavorite
+    onDelete
 
 }) {
 
-  if(documents.length===0){
+    if (documents.length === 0) {
 
-    return <EmptyState/>;
+        return <EmptyState />;
 
-  }
+    }
 
-  return(
+    return (
 
-    <div
+        <div
+            className={
+                viewMode === "grid"
+                    ? "document-grid"
+                    : "document-list"
+            }
+        >
 
-      className={
+            {
 
-        viewMode==="GRID"
+                documents.map((document) => (
 
-        ? "document-grid"
+                    <DocumentCard
 
-        : "document-list"
+                        key={document.id}
 
-      }
+                        document={document}
 
-    >
+                        viewMode={viewMode}
 
-      {
+                        onDelete={onDelete}
 
-        documents.map(file=>(
+                    />
 
-          <DocumentCard
+                ))
 
-            key={file.id}
+            }
 
-            file={file}
+        </div>
 
-            viewMode={viewMode}
-
-            onToggleFavorite={onToggleFavorite}
-
-          />
-
-        ))
-
-      }
-
-    </div>
-
-  );
+    );
 
 }
 

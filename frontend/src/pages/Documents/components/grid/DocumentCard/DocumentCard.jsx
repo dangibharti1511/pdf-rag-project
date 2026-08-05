@@ -2,9 +2,7 @@ import "./DocumentCard.css";
 
 import {
     FileText,
-    Star,
-    Sparkles,
-    Clock,
+    Trash2,
     HardDrive
 } from "lucide-react";
 
@@ -12,26 +10,21 @@ import clsx from "clsx";
 
 function DocumentCard({
 
-    file,
+    document,
 
     viewMode,
 
-    onToggleFavorite
+    onDelete
 
 }) {
 
     return (
 
         <div
-
             className={clsx(
-
                 "document-card",
-
-                viewMode === "LIST" && "list-view"
-
+                viewMode === "list" && "list-view"
             )}
-
         >
 
             <div className="document-icon">
@@ -42,11 +35,11 @@ function DocumentCard({
 
             <div className="document-content">
 
-                <h3>{file.name}</h3>
+                <h3>{document.name}</h3>
 
                 <span className="document-type">
 
-                    {file.type}
+                    {document.type}
 
                 </span>
 
@@ -56,77 +49,20 @@ function DocumentCard({
 
                         <HardDrive size={15} />
 
-                        {file.size}
-
-                    </span>
-
-                    <span>
-
-                        <Clock size={15} />
-
-                        {file.uploadedAt}
+                        {document.size} MB
 
                     </span>
 
                 </div>
 
-                <span
-
-                    className={clsx(
-
-                        "status",
-
-                        file.aiReady
-
-                            ? "ready"
-
-                            : "pending"
-
-                    )}
-
-                >
-
-                    <Sparkles size={14} />
-
-                    {file.status}
-
-                </span>
-
             </div>
 
             <button
-
-                className={clsx(
-
-                    "favorite-btn",
-
-                    file.favorite && "active"
-
-                )}
-
-                onClick={() =>
-
-                    onToggleFavorite(file.id)
-
-                }
-
+                className="delete-button"
+                onClick={() => onDelete(document.name)}
             >
 
-                <Star
-
-                    size={20}
-
-                    fill={
-
-                        file.favorite
-
-                            ? "currentColor"
-
-                            : "none"
-
-                    }
-
-                />
+                <Trash2 size={18} />
 
             </button>
 

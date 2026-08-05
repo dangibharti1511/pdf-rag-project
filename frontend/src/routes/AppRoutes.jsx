@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Favorites from "../pages/Favorites/Favorites";
+
 import MainLayout from "../layouts/MainLayout";
 import Favorites from "../pages/Favorites/Favorites";
 import Workspace from "../pages/Workspace/Workspace";

@@ -4,7 +4,6 @@ import {
   Search,
   LayoutGrid,
   List,
-  ArrowUpDown
 } from "lucide-react";
 
 const fileTypes = [

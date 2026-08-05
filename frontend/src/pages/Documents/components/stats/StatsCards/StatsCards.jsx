@@ -7,18 +7,18 @@ import {
   Layers3
 } from "lucide-react";
 
-import { mockFiles } from "../../../../../data/mockFiles";
+function StatsCards({ documents = [] }) {
 
-function StatsCards() {
+  const totalDocuments = documents.length;
 
-  const totalDocuments = mockFiles.length;
+  const aiReady = documents.length;
 
-  const aiReady = mockFiles.filter(file => file.aiReady).length;
-
-  const favorites = mockFiles.filter(file => file.favorite).length;
+  const favorites = documents.filter(
+    doc => doc.favorite
+  ).length;
 
   const supportedTypes = new Set(
-    mockFiles.map(file => file.type)
+    documents.map(doc => doc.type)
   ).size;
 
   const stats = [
@@ -45,6 +45,7 @@ function StatsCards() {
   ];
 
   return (
+
     <div className="stats-grid">
 
       {stats.map((item) => {
@@ -79,6 +80,7 @@ function StatsCards() {
       })}
 
     </div>
+
   );
 
 }

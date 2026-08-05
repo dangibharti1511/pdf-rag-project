@@ -1,0 +1,41 @@
+.chat-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:20px 30px;
+
+border-bottom:1px solid #e5e7eb;
+
+background:white;
+
+}
+
+.chat-title{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.chat-title h2{
+
+margin:0;
+
+font-size:22px;
+
+}
+
+.chat-title p{
+
+margin-top:4px;
+
+color:#6b7280;
+
+}

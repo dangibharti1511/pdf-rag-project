@@ -56,3 +56,32 @@ backend/faiss_index/
 # OS Files
 .DS_Store
 Thumbs.db
+# =========================
+# Python Build Files
+# =========================
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Environment
+# =========================
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Temporary Files
+# =========================
+*.tmp
+*.temp
+
+# =========================
+# macOS / Linux
+# =========================
+.AppleDouble
+.LSOverride

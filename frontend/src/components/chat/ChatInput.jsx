@@ -1,24 +1,75 @@
 import "./ChatInput.css";
 
+import { useState } from "react";
+
 import { SendHorizontal } from "lucide-react";
 
-function ChatInput() {
-  return (
-    <div className="chat-input">
+function ChatInput({
 
-      <input
-        type="text"
-        placeholder="Ask ThinkAI about your uploaded documents..."
-      />
+    onSend,
 
-      <button>
+    loading
 
-        <SendHorizontal size={18} />
+}) {
 
-      </button>
+    const [question, setQuestion] = useState("");
 
-    </div>
-  );
+    function submit() {
+
+        if (!question.trim()) return;
+
+        onSend(question);
+
+        setQuestion("");
+
+    }
+
+    return (
+
+        <div className="chat-input">
+
+            <input
+
+                type="text"
+
+                value={question}
+
+                placeholder="Ask ThinkAI..."
+
+                onChange={(e) =>
+
+                    setQuestion(e.target.value)
+
+                }
+
+                onKeyDown={(e) => {
+
+                    if (e.key === "Enter")
+
+                        submit();
+
+                }}
+
+                disabled={loading}
+
+            />
+
+            <button
+
+                onClick={submit}
+
+                disabled={loading}
+
+            >
+
+                <SendHorizontal size={18} />
+
+            </button>
+
+        </div>
+
+    );
+
 }
 
 export default ChatInput;

@@ -1,105 +1,99 @@
-import { useMemo, useState } from "react";
-import { mockFiles } from "../../../data/mockFiles";
+import { useEffect, useState } from "react";
 
-function useDocuments() {
-  const [documents, setDocuments] = useState(mockFiles);
+import { documentService } from "../../../services/api";
 
-  const [searchTerm, setSearchTerm] = useState("");
+function useDocuments(){
 
-  const [selectedType, setSelectedType] = useState("ALL");
+    const [documents,setDocuments]=useState([]);
 
-  const [sortOption, setSortOption] = useState("NAME_ASC");
+    const [loading,setLoading]=useState(true);
 
-  const [viewMode, setViewMode] = useState("GRID");
+    const [searchTerm,setSearchTerm]=useState("");
 
-  const filteredDocuments = useMemo(() => {
-    let filtered = [...documents];
+    const [selectedType,setSelectedType]=useState("All");
 
-    // Search
-    filtered = filtered.filter((file) => {
-      const search = searchTerm.toLowerCase();
+    const [sortOption,setSortOption]=useState("Newest");
 
-      return (
-        file.name.toLowerCase().includes(search) ||
-        file.type.toLowerCase().includes(search)
-      );
-    });
+    const [viewMode,setViewMode]=useState("grid");
 
-    // File Type
-    if (selectedType !== "ALL") {
-      filtered = filtered.filter(
-        (file) => file.type === selectedType
-      );
+    async function loadDocuments(){
+
+        try{
+
+            const data=
+
+                await documentService.getDocuments();
+
+            setDocuments(Array.isArray(data) ? data : []);
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+        finally{
+
+            setLoading(false);
+
+        }
+
     }
 
-    // Sorting
-    switch (sortOption) {
-      case "NAME_ASC":
-        filtered.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
-        break;
+    useEffect(()=>{
 
-      case "NAME_DESC":
-        filtered.sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
-        break;
+        loadDocuments();
 
-      case "TYPE":
-        filtered.sort((a, b) =>
-          a.type.localeCompare(b.type)
-        );
-        break;
+    },[]);
 
-      case "SIZE":
-        filtered.sort((a, b) =>
-          a.size.localeCompare(b.size)
-        );
-        break;
+    async function deleteDocument(filename){
 
-      default:
-        break;
+        try{
+
+            await documentService.deleteDocument(filename);
+
+            loadDocuments();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
     }
 
-    return filtered;
-  }, [
-    documents,
-    searchTerm,
-    selectedType,
-    sortOption
-  ]);
+    return{
 
-  const toggleFavorite = (id) => {
-    setDocuments((prev) =>
-      prev.map((doc) =>
-        doc.id === id
-          ? {
-              ...doc,
-              favorite: !doc.favorite
-            }
-          : doc
-      )
-    );
-  };
+        documents,
 
-  return {
-    documents: filteredDocuments,
+        loading,
 
-    searchTerm,
-    setSearchTerm,
+        searchTerm,
 
-    selectedType,
-    setSelectedType,
+        setSearchTerm,
 
-    sortOption,
-    setSortOption,
+        selectedType,
 
-    viewMode,
-    setViewMode,
+        setSelectedType,
 
-    toggleFavorite
-  };
+        sortOption,
+
+        setSortOption,
+
+        viewMode,
+
+        setViewMode,
+
+        loadDocuments,
+
+        deleteDocument
+
+    };
+
 }
 
 export default useDocuments;

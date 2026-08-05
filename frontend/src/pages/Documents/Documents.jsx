@@ -1,7 +1,7 @@
 import "./Documents.css";
 
 import DocumentsHeader from "./components/DocumentsHeader/DocumentsHeader";
-
+import EmptyState from "./components/empty/EmptyState/EmptyState";
 import SearchBar from "./components/toolbar/SearchBar/SearchBar";
 
 import StatsCards from "./components/stats/StatsCards/StatsCards";
@@ -12,27 +12,47 @@ import useDocuments from "./hooks/useDocuments";
 
 function Documents() {
 
-  const {
+  const{
 
-    documents,
+   documents,
 
-    searchTerm,
-    setSearchTerm,
+   loading,
 
-    selectedType,
-    setSelectedType,
+   searchTerm,
 
-    sortOption,
-    setSortOption,
+   setSearchTerm,
 
-    viewMode,
-    setViewMode,
+   selectedType,
 
-    toggleFavorite
+   setSelectedType,
 
-  } = useDocuments();
+   sortOption,
 
-  return (
+   setSortOption,
+
+   viewMode,
+
+   setViewMode,
+
+   deleteDocument
+
+  }=useDocuments();
+  if(!loading && (!documents || documents.length === 0)){
+
+     return(
+
+        <div className="documents-page">
+
+            <DocumentsHeader/>
+
+           <EmptyState/>
+
+        </div>
+
+   );
+
+  }
+ return (
 
     <div className="documents-page">
 
@@ -54,15 +74,14 @@ function Documents() {
 
       />
 
-      <StatsCards />
+      <StatsCards documents={documents} />
 
       <DocumentGrid
 
         documents={documents}
 
         viewMode={viewMode}
-
-        onToggleFavorite={toggleFavorite}
+        onDelete={deleteDocument}
 
       />
 
